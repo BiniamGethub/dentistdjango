@@ -1,6 +1,8 @@
 
 import os
-
+import django_heroku
+import dj_database_url
+import decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +41,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'dentist.urls'
@@ -115,6 +118,7 @@ STATICFILES_DIRS = [
 
     os.path.join(BASE_DIR, 'static'),
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # python -m smtpd -n -c DebuggingServer localhost:1025
 # myaccount.google.com/lesssecureapps
 # accounts.google.com/DisplayUnlockCaptcha
@@ -128,3 +132,5 @@ EMAIL_HOST_USER = 'binihome55@gmail.com'
 EMAIL_HOST_PASSWORD = 'maelle2020.com55'
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False
+
+django_heroku.settings(locals())
